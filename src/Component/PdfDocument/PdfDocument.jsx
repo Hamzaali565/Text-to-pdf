@@ -1,7 +1,7 @@
 import React from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import png from "./Component/baby.png";
+import png from "../../Component/baby.png";
 
 const data = [
   { id: 1, description: "Product 1", quantity: 1, price: 5 },
@@ -156,7 +156,7 @@ const data = [
   { id: 150, description: "Product 150", quantity: 150, price: 5 },
 ];
 
-const App = () => {
+const PdfDocument = () => {
   const exportPdfHandler = () => {
     const doc = new jsPDF();
 
@@ -258,4 +258,4 @@ const Butto = {
   marginBottom: "1rem",
 };
 
-export default App;
+export default PdfDocument;
