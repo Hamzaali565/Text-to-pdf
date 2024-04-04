@@ -164,7 +164,7 @@ const PdfDocument = () => {
     const headerImage = new Image();
     headerImage.src = png;
 
-    const pageCount = Math.ceil(data.length / 30); // Assuming 25 rows per page
+    const pageCount = Math.ceil(data.length / 30); // Assuming 30 rows per page
 
     for (let page = 1; page <= pageCount; page++) {
       if (page > 1) {
