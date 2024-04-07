@@ -2,6 +2,7 @@ import "jspdf-autotable";
 import jsPDF from "jspdf";
 import React from "react";
 import png from "../baby.png";
+import "./MySelf.css";
 
 const data = [
   { id: 1, description: "Product 1", quantity: 1, price: 5 },
@@ -209,7 +210,65 @@ const MySelf = () => {
       );
       doc.text("Discharge Date And Time", borderX + 140, borderY + 5);
       doc.text("02/03/2024  15:30", borderX + 140, borderY + 15);
+      // Border on patient details
+
+      if (page === 1) {
+        // new border
+        const borderX1 = 10; // X-coordinate of the border
+        const borderY1 = 55; // Y-coordinate of the border
+        const borderWidth1 = doc.internal.pageSize.width - 20; // Width of the border
+        const borderHeight1 = 30; // Height of the border
+        doc.rect(borderX1, borderY1, borderWidth1, borderHeight1);
+        doc.setFontSize(12);
+        doc.text("Patient Details", doc.internal.pageSize.width - 100, 50, {
+          align: "center",
+        });
+        doc.setFontSize(8);
+        doc.text(
+          "Patient Name: MR. Muhammad KHALIQ S/o MUHAMMAD KHALIQ",
+          borderX1 + 2,
+          borderY1 + 5
+        );
+        doc.text(
+          "Address: PIB COLONY HOUSE NO 496",
+          borderX1 + 2,
+          borderY1 + 13
+        );
+
+        doc.text("Party Name: PRIVATE", borderX1 + 130, borderY1 + 5);
+        doc.text("M.R. No. 2024/028842", borderX1 + 130, borderY1 + 13);
+        doc.text("Ward Name: Male General Ward", borderX1 + 130, borderY1 + 20);
+        doc.text("Bed No. MGW-105", borderX1 + 130, borderY1 + 27);
+        doc.text(
+          "Consultant: DR. SOHAIL AHMAD WARSI",
+          borderX1 + 2,
+          borderY1 + 27
+        );
+        doc.text("Gender:  MALE", borderX1 + 2, borderY1 + 20);
+        const rowData = [
+          ["Hamza", "Quantity", "Price"],
+          ["", "", ""], // Empty row to occupy the second row for the rowspan effect
+        ];
+        doc.autoTable({
+          head: [],
+          body: rowData,
+          startY: 90,
+          theme: "grid",
+          styles: {
+            fontSize: 10,
+            color: [0, 0, 0],
+            valign: "middle",
+            halign: "center",
+            lineWidth: 0.5, // Set the border width for the entire table
+            lineColor: [0, 0, 0], // Set the border color
+          },
+          margin: { top: 40 },
+
+          tableLineColor: [255, 255, 255],
+        });
+      }
     }
+
     const pdfDataUri = doc.output("datauristring");
     const pdfWindow = window.open();
     pdfWindow.document.write(
